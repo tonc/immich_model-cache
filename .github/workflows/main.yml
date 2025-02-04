@@ -6,7 +6,7 @@ on:
       - main  # 或你想触发构建的分支
   pull_request:
     branches:
-      - main  # 或你想触发构建的分支
+      - main  # 或你想触发构建的分支 
 
 jobs:
   build:
