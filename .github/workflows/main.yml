@@ -53,7 +53,7 @@ jobs:
     - name: 推送到 GitHub 容器注册表 (GHCR)
       run: |
         docker tag xkand/immich_model-cache:latest ghcr.io/tonc/immich_model-cache:latest
-        docker push ghcr.io/tonc/xkand/immich_model-cache:latest
+        docker push ghcr.io/tonc/immich_model-cache:latest
 
     # 推送到阿里云容器镜像
     - name: 推送到阿里云容器镜像
