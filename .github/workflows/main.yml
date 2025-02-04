@@ -42,7 +42,7 @@ jobs:
     # 构建 Docker 镜像
     - name: Build Docker image
       run: |
-        docker build -t xkand/immich_model-cache:latest .
+        docker build -f docker/Dockerfile -t xkand/immich_model-cache:latest .
 
     # 推送到 Docker Hub
     - name: Push to Docker Hub
