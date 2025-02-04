@@ -46,10 +46,10 @@ jobs:
       run: |
         docker build -f Dockerfile -t xkand/immich_model-cache:latest .
 
-    # 推送到 Docker Hub
-    - name: 推送到 Docker Hub
-      run: |
-        docker push xkand/immich_model-cache:latest
+    # # 推送到 Docker Hub
+    # - name: 推送到 Docker Hub
+    #   run: |
+    #     docker push xkand/immich_model-cache:latest
 
     # 推送到 GHCR
     - name: 推送到 GitHub 容器注册表 (GHCR) 
