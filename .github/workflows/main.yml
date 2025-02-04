@@ -58,5 +58,5 @@ jobs:
     # 推送到阿里云容器镜像
     - name: 推送到阿里云容器镜像
       run: |
-        docker tag xkand/immich_model-cache:latest registry.cn-beijing.aliyuncs.com/tonc/xkand/immich_model-cache:latest
-        docker push registry.cn-beijing.aliyuncs.com/tonc/xkand/immich_model-cache:latest
+        docker tag xkand/immich_model-cache:latest registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
+        docker push registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
