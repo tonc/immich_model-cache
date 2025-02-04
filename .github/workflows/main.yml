@@ -49,16 +49,16 @@ jobs:
     # # 推送到 Docker Hub
     # - name: 推送到 Docker Hub
     #   run: |
-    #     docker push xkand/immich_model-cache:latest
+    #     time docker push --progress=plain xkand/immich_model-cache:latest
 
     # 推送到 GHCR
-    - name: 推送到 GitHub 容器注册表 (GHCR) 
+    - name: 推送到 GitHub 容器注册表 (GHCR)
       run: |
-        docker tag xkand/immich_model-cache:latest ghcr.io/tonc/immich_model-cache:latest
-        docker push ghcr.io/tonc/immich_model-cache:latest
+        time docker tag xkand/immich_model-cache:latest ghcr.io/tonc/immich_model-cache:latest
+        time docker push --progress=plain ghcr.io/tonc/immich_model-cache:latest
 
     # 推送到阿里云容器镜像
     - name: 推送到阿里云容器镜像
       run: |
-        docker tag xkand/immich_model-cache:latest registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
-        docker push registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
+        time docker tag xkand/immich_model-cache:latest registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
+        time docker push --progress=plain registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
