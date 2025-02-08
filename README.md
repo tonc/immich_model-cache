@@ -12,4 +12,4 @@ immich_model-cache 方便小伙伴们拉取中文大模型
       - model-cache:/model-cache
 ```
 
-注意：-v model-cache:/model-cache 需要和 immich_machine_learning 容器内的路径一致
+注意：model-cache 映射路径需要和 immich_machine_learning 容器内的路径一致
