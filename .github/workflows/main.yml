@@ -53,10 +53,10 @@ jobs:
         docker build -f Dockerfile -t xkand/immich_model-cache:latest .
 
     # 推送到自建服务器
-    - name: 推送到自建服务器
-      run: |
-        docker tag xkand/immich_model-cache:latest ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich_model-cache:latest
-        docker push ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich_model-cache:latest
+    # - name: 推送到自建服务器
+    #   run: |
+    #     docker tag xkand/immich_model-cache:latest ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich_model-cache:latest
+    #     docker push ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich_model-cache:latest
         
     # 推送到 Docker Hub
     - name: 推送到 Docker Hub
