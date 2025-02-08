@@ -1,6 +1,11 @@
 # immich_model-cache
 immich_model-cache 方便小伙伴们拉取中文大模型
 
+模型包括:
+- XLM-Roberta-Large-Vit-B-16Plus
+- antelopev2
+- buffalo_l
+
 官方docker-compose.yml内填加下面的内容
 
 ```
