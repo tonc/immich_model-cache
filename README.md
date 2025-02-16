@@ -26,7 +26,9 @@ immich_model-cache 方便小伙伴们拉取中文大模型
 
 
 # immich-geodata-cn
+
 作者仓库: https://github.com/ZingLix/immich-geodata-cn
+
 官方docker-compose.yml内填加下面的内容
 
 ```
