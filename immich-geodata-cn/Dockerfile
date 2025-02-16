@@ -5,7 +5,7 @@ FROM alpine
 WORKDIR /app
 
 # 安装所需的工具（curl 和 unzip）
-RUN apk add --no-cache cronie curl unzip tzdata
+RUN apk add --no-cache curl unzip
 
 # 创建必要的目录
 RUN mkdir -p /app_container_data /app/geodata /app/i18n-iso-countries
