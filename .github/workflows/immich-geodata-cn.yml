@@ -50,7 +50,7 @@ jobs:
     # 构建 Docker 镜像
     - name: 构建 Docker 镜像
       run: |
-        docker build -f Dockerfile -t xkand/immich-geodata-cn:latest .
+        docker build -f ./immich-geodata-cn/Dockerfile -t xkand/immich-geodata-cn:latest .
 
     # 推送到自建服务器
     # - name: 推送到自建服务器
