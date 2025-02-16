@@ -25,4 +25,3 @@ COPY --from=builder /model-cache-original /model-cache-original
 
 # 启动逻辑
 CMD ["/bin/sh", "-c", "if [ -z \"$(ls -A /model-cache)\" ]; then cp -r /model-cache-original/* /model-cache/; fi && tail -f /dev/null"]
-# CMD ["/bin/sh", "-c", "cp -r /model-cache-original/* /model-cache/ && tail -f /dev/null"]
