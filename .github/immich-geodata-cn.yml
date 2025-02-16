@@ -1,0 +1,76 @@
+name: 构建并推送 Docker 镜像
+
+on:
+  workflow_dispatch: # 手动触发
+  # push:
+  #   branches:
+  #     - main  # 或你想触发构建的分支
+  # pull_request:
+  #   branches:
+  #     - main  # 或你想触发构建的分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v2
+
+    # 登录到 Docker Hub、GHCR 或阿里云容器镜像
+    - name: 登录到 Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # 登录到 GitHub Container Registry (GHCR)
+    - name: 登录到 GitHub 容器注册表 (GHCR)
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_TOKEN }}
+
+    # 登录到阿里云容器镜像
+    - name: 登录到阿里云容器镜像
+      run:
+          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
+      # uses: docker/login-action@v2
+      # with:
+      #   registry: registry.cn-beijing.aliyuncs.com
+      #   username: ${{ secrets.ALIYUN_USERNAME }}
+      #   password: ${{ secrets.ALIYUN_PASSWORD }}
+
+    # 登录到自建服务器
+    - name: 登录到自建服务器
+      run:
+          docker login -u ${{ secrets.MYREGISTRY_USERNAME }} -p ${{ secrets.MYREGISTRY_PASSWORD }} ${{ secrets.MYREGISTRY_ADDRESS }}
+    
+    # 构建 Docker 镜像
+    - name: 构建 Docker 镜像
+      run: |
+        docker build -f Dockerfile -t xkand/immich-geodata-cn:latest .
+
+    # 推送到自建服务器
+    # - name: 推送到自建服务器
+    #   run: |
+    #     docker tag xkand/immich-geodata-cn:latest ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich-geodata-cn:latest
+    #     docker push ${{ secrets.MYREGISTRY_ADDRESS }}/xkand/immich-geodata-cn:latest
+        
+    # 推送到 Docker Hub
+    - name: 推送到 Docker Hub
+      run: |
+        docker push xkand/immich-geodata-cn:latest
+
+    # 推送到 GHCR
+    - name: 推送到 GitHub 容器注册表 (GHCR)
+      run: |
+        docker tag xkand/immich-geodata-cn:latest ghcr.io/tonc/immich-geodata-cn:latest
+        docker push ghcr.io/tonc/immich-geodata-cn:latest
+
+    # 推送到阿里云容器镜像
+    - name: 推送到阿里云容器镜像
+      run: |
+        docker tag xkand/immich-geodata-cn:latest registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
+        docker push registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
