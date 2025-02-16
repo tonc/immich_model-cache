@@ -23,4 +23,4 @@ RUN curl -L https://github.com/ZingLix/immich-geodata-cn/releases/download/auto-
     rm -rf /app_container_data/i18n-iso-countries.zip /app_container_data/i18n_temp
 
 # 设置容器启动时的默认命令
-CMD ["if [ -z \"$(ls -A /app)\" ]; then echo \"Initializing /app with container data...\"; cp -r /app_container_data/* /app/; fi && echo \"$(date -u +\"%Y-%m-%dT%H:%M:%S+00:00\")\" > /app/geodata/geodata-date.txt"]
+CMD ["sh", "-c", "if [ -z \"$(ls -A /app)\" ]; then echo \"Initializing /app with container data...\"; cp -r /app_container_data/* /app/; fi && echo \"$(date -u +\"%Y-%m-%dT%H:%M:%S+00:00\")\" > /app/geodata/geodata-date.txt"]
