@@ -67,9 +67,9 @@ jobs:
           linux/s390x
         push: true
         tags: |
-          xkand/immich_model-cache:latest
-          ghcr.io/tonc/immich_model-cache:latest
-          registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
+          xkand/immich-geodata-cn:latest
+          ghcr.io/tonc/immich-geodata-cn:latest
+          registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
     
     # # 构建 Docker 镜像
     # - name: 构建 Docker 镜像
