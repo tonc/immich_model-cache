@@ -9,11 +9,11 @@ RUN apk add --no-cache curl unzip && \
     # 创建临时目录用于存放解压后的文件
     mkdir -p /app_container_data/geodata_temp /app_container_data/i18n_temp && \
     # 下载地理数据文件
-    curl -L https://github.com/ZingLix/immich-geodata-cn/releases/download/auto-release/geodata_full.zip -o /app_container_data/geodata_full.zip && \
+    curl -L https://github.com/ZingLix/immich-geodata-cn/releases/download/auto-release/geodata.zip -o /app_container_data/geodata.zip && \
     # 下载国际化数据文件
     curl -L https://github.com/ZingLix/immich-geodata-cn/releases/download/auto-release/i18n-iso-countries.zip -o /app_container_data/i18n-iso-countries.zip && \
     # 解压地理数据文件到临时目录
-    unzip /app_container_data/geodata_full.zip -d /app_container_data/geodata_temp && \
+    unzip /app_container_data/geodata.zip -d /app_container_data/geodata_temp && \
     # 解压国际化数据文件到临时目录
     unzip /app_container_data/i18n-iso-countries.zip -d /app_container_data/i18n_temp && \
     # 将解压后的地理数据移动到最终目录
@@ -21,7 +21,7 @@ RUN apk add --no-cache curl unzip && \
     # 将解压后的国际化数据移动到最终目录
     mv /app_container_data/i18n_temp/* /app_container_data/i18n-iso-countries && \
     # 清理临时文件和压缩包
-    rm -rf /app_container_data/geodata_full.zip /app_container_data/geodata_temp && \
+    rm -rf /app_container_data/geodata.zip /app_container_data/geodata_temp && \
     rm -rf /app_container_data/i18n-iso-countries.zip /app_container_data/i18n_temp
 
 # 生产阶段：使用 alpine 作为基础镜像
