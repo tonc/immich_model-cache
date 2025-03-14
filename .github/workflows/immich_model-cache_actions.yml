@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 拉取代码
+    - name: 检出代码
+      uses: actions/checkout@v2
+
+    - name: 安装 Git LFS
+      uses: actions/setup-git-lfs@v1
+
+    - name: 拉取 Hugging Face 模型
       run: |
-        sudo apt-get update -y && \
-        sudo apt-get install -y git git-lfs && \
-        git lfs install --system && \
         mkdir -p ./model-cache-original/clip ./model-cache-original/facial-recognition && \
         git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus ./model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
         git clone --depth 1 https://huggingface.co/immich-app/antelopev2 ./model-cache-original/facial-recognition/antelopev2 && \
@@ -22,21 +25,15 @@ jobs:
         find ./model-cache-original -type d -name ".git" -exec rm -rf {} + && \
         du -sh ./model-cache-original/*
 
-    - name: 检出代码
-      uses: actions/checkout@v2
-
-    # 设置 Docker Buildx
     - name: 设置 Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    # 登录到 Docker Hub、GHCR 或阿里云容器镜像
     - name: 登录到 Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # 登录到 GitHub Container Registry (GHCR)
     - name: 登录到 GitHub 容器注册表 (GHCR)
       uses: docker/login-action@v2
       with:
@@ -44,23 +41,17 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GH_TOKEN }}
 
-    # 登录到阿里云容器镜像
     - name: 登录到阿里云容器镜像
-      run:
-          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
+      run: docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
 
-    # 构建并推送多平台 Docker 镜像
     - name: 构建并推送多平台 Docker 镜像
       uses: docker/build-push-action@v4
       with:
         context: .
         file: ./immich_model-cache/Dockerfile_github_actions
-        platforms: |
-          linux/amd64
-          linux/arm64
+        platforms: linux/amd64,linux/arm64
         push: true
         tags: |
           xkand/immich_model-cache:test
           ghcr.io/tonc/immich_model-cache:test
           registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:test
-    

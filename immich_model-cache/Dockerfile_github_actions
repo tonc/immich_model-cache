@@ -1,11 +1,15 @@
-# 生产阶段
-FROM alpine
+# 使用更小的基础镜像（alpine 只需要 5MB）
+FROM alpine:latest
 
-# 设置工作目录为 /model-cache
+# 设置工作目录
 WORKDIR /model-cache
 
-# 复制构建阶段的文件到 /model-cache-original
-COPY ./model-cache-original /model-cache-original
+# 减少 Docker 构建上下文大小
+# 只复制需要的内容，并确保目录存在
+COPY model-cache-original /model-cache-original
+
+# 赋予正确的权限，防止权限问题
+RUN chmod -R 755 /model-cache-original
 
 # 启动逻辑
 CMD ["/bin/sh", "-c", "if [ -z \"$(ls -A /model-cache)\" ]; then cp -r /model-cache-original/* /model-cache/; fi && tail -f /dev/null"]
