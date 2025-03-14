@@ -44,11 +44,11 @@ jobs:
     - name: 登录到阿里云容器镜像
       run: docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
 
-    # 关键修改点：设置 `context: $GITHUB_WORKSPACE`
+    # 构建并推送多平台 Docker 镜像
     - name: 构建并推送多平台 Docker 镜像
       uses: docker/build-push-action@v4
       with:
-        context: $GITHUB_WORKSPACE  # 使用完整的 GitHub 工作目录作为 Docker 构建上下文
+        context: .
         file: ./immich_model-cache/Dockerfile_github_actions
         platforms: linux/amd64,linux/arm64
         push: true
