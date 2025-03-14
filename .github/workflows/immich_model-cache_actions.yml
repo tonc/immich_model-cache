@@ -16,11 +16,11 @@ jobs:
         sudo apt-get install -y git git-lfs && \
         git lfs install --system && \
         mkdir -p ./model-cache-original/clip ./model-cache-original/facial-recognition && \
-        git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
-        git clone --depth 1 https://huggingface.co/immich-app/antelopev2 /model-cache-original/facial-recognition/antelopev2 && \
-        git clone --depth 1 https://huggingface.co/immich-app/buffalo_l /model-cache-original/facial-recognition/buffalo_l && \
+        git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus ./model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
+        git clone --depth 1 https://huggingface.co/immich-app/antelopev2 ./model-cache-original/facial-recognition/antelopev2 && \
+        git clone --depth 1 https://huggingface.co/immich-app/buffalo_l ./model-cache-original/facial-recognition/buffalo_l && \
         find /model-cache-original -type d -name ".git" -exec rm -rf {} + && \
-        du -sh /model-cache-original/*
+        du -sh ./model-cache-original/*
 
     - name: 检出代码
       uses: actions/checkout@v2
