@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: 拉取代码
       run:
-        apt-get update && apt-get install git git-lfs && \
+        apt-get update && apt-get install git git-lfs -y && \
         git lfs install && \
         mkdir -p /model-cache-original/clip /model-cache-original/facial-recognition && \
         git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
