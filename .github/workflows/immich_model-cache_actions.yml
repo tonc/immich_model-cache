@@ -1,4 +1,4 @@
-name: 构建 immich_model-cache 并推送 Docker 镜像
+name: 构建 github actions immich_model-cache 并推送 Docker 镜像
 
 on:
   workflow_dispatch: # 手动触发
@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: 拉取代码
       run:
-        apk add --no-cache git git-lfs && \
+        apt-get update && apt-get install git git-lfs && \
         git lfs install && \
         mkdir -p /model-cache-original/clip /model-cache-original/facial-recognition && \
         git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
