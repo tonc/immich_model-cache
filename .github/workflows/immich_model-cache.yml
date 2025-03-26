@@ -135,9 +135,7 @@
 name: 构建 immich_model-cache 并推送 Docker 镜像
 
 on:
-  workflow_dispatch: # 手动触发
-  # schedule:
-  #   - cron: "33 5 * * 5"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -147,23 +145,29 @@ jobs:
     - name: 检出代码
       uses: actions/checkout@v2
       with:
-        path: 'src'  # 明确指定检出路径
+        path: 'src'
 
-    # 增加可用磁盘空间
     - name: 最大化构建空间
       uses: easimon/maximize-build-space@master
       with:
-        root-reserve-mb: 2048
-        swap-size-mb: 128
+        root-reserve-mb: 512
+        swap-size-mb: 1024
         remove-dotnet: 'true'
         remove-haskell: 'true'
         remove-android: 'true'
         remove-codeql: 'true'
-        build-mount-path: '/var/lib/docker/'
 
-    # 设置 Docker Buildx
+    - name: 清理 Docker 缓存
+      run: |
+        docker system prune -f
+        sudo rm -rf /var/lib/docker/tmp/*
+
     - name: 设置 Docker Buildx
       uses: docker/setup-buildx-action@v2
+      with:
+        driver: docker-container
+        driver-opts: |
+          image=moby/buildkit:buildx-stable-1
 
     # 登录到 cnb
     - name: 登录到 cnb
@@ -190,12 +194,12 @@ jobs:
       run: |
         docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
 
-    # 构建并推送多平台 Docker 镜像
+    # 构建并推送多平台 Docker 镜像（包含 cnb 和 aliyun）
     - name: 构建并推送多平台 Docker 镜像
       uses: docker/build-push-action@v4
       with:
-        context: ./src  # 修改为正确的上下文路径
-        file: ./src/immich_model-cache/Dockerfile  # 完整路径
+        context: ./src
+        file: ./src/immich_model-cache/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
