@@ -57,3 +57,4 @@ jobs:
           xkand/immich-geodata-cn:latest
           ghcr.io/tonc/immich-geodata-cn:latest
           registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
+          docker.cnb.cool/xkand/docker/immich-geodata-cn:latest
