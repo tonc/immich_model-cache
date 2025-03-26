@@ -7,9 +7,12 @@ WORKDIR /model-cache-original
 RUN apk add --no-cache git git-lfs && \
     git lfs install --system && \
     mkdir -p /model-cache-original/clip /model-cache-original/facial-recognition && \
-    git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
-    git clone --depth 1 https://huggingface.co/immich-app/antelopev2 /model-cache-original/facial-recognition/antelopev2 && \
-    git clone --depth 1 https://huggingface.co/immich-app/buffalo_l /model-cache-original/facial-recognition/buffalo_l && \
+    # git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
+    # git clone --depth 1 https://huggingface.co/immich-app/antelopev2 /model-cache-original/facial-recognition/antelopev2 && \
+    # git clone --depth 1 https://huggingface.co/immich-app/buffalo_l /model-cache-original/facial-recognition/buffalo_l && \
+    git clone --depth 1 https://hf-mirror.com/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
+    git clone --depth 1 https://hf-mirror.com/immich-app/antelopev2 /model-cache-original/facial-recognition/antelopev2 && \
+    git clone --depth 1 https://hf-mirror.com/immich-app/buffalo_l /model-cache-original/facial-recognition/buffalo_l && \
     # git clone --depth 1 https://huggingface.co/immich-app/buffalo_m /model-cache-original/facial-recognition/buffalo_m && \
     # git clone --depth 1 https://huggingface.co/immich-app/buffalo_s /model-cache-original/facial-recognition/buffalo_s && \
     find /model-cache-original -type d -name ".git" -exec rm -rf {} + && \
