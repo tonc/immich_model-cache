@@ -5,7 +5,7 @@ WORKDIR /model-cache-original
 
 # 安装 Git 和 Git LFS
 RUN apk add --no-cache git git-lfs && \
-    git lfs install && \
+    git lfs install --system && \
     mkdir -p /model-cache-original/clip /model-cache-original/facial-recognition && \
     git clone --depth 1 https://huggingface.co/immich-app/XLM-Roberta-Large-Vit-B-16Plus /model-cache-original/clip/XLM-Roberta-Large-Vit-B-16Plus && \
     git clone --depth 1 https://huggingface.co/immich-app/antelopev2 /model-cache-original/facial-recognition/antelopev2 && \

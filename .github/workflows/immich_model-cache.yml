@@ -56,4 +56,3 @@ jobs:
           xkand/immich_model-cache:latest
           ghcr.io/tonc/immich_model-cache:latest
           registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
-    
