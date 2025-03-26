@@ -1,4 +1,4 @@
-name: 构建 immich_model-cache 并推送 Docker 镜像
+name: 构建 arm_immich_model-cache 并推送 Docker 镜像
 
 on:
   workflow_dispatch: # 手动触发
@@ -50,6 +50,7 @@ jobs:
         file: ./immich_model-cache/Dockerfile
         platforms: |
           linux/amd64
+          linux/arm64
         push: true
         tags: |
           xkand/immich_model-cache:latest
