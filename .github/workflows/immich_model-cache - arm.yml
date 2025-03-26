@@ -49,7 +49,6 @@ jobs:
         context: .
         file: ./immich_model-cache/Dockerfile
         platforms: |
-          linux/amd64
           linux/arm64
         push: true
         tags: |
