@@ -144,8 +144,8 @@ jobs:
     steps:
     - name: 检出代码
       uses: actions/checkout@v2
-      with:
-        path: 'src'
+      # with:
+        # path: 'src'
 
     - name: 最大化构建空间
       uses: easimon/maximize-build-space@master
@@ -198,8 +198,8 @@ jobs:
     - name: 构建并推送多平台 Docker 镜像
       uses: docker/build-push-action@v4
       with:
-        context: ./src
-        file: ./src/immich_model-cache/Dockerfile
+        # context: .
+        file: ./immich_model-cache/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
