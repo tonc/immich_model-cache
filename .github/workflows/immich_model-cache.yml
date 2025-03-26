@@ -2,8 +2,8 @@ name: 构建 immich_model-cache 并推送 Docker 镜像
 
 on:
   workflow_dispatch: # 手动触发
-  # schedule:
-  #   - cron: "33 5 * * 5"
+  schedule:
+    - cron: "33 5 * * 5"
 
 jobs:
   build:
@@ -19,8 +19,8 @@ jobs:
         remove-dotnet: 'true'
         remove-haskell: 'true'
         # 如果空间还是不够用，可以把以下开启，清理出更多空间
-        # remove-android: 'true'
-        # remove-codeql: 'true'
+        remove-android: 'true'
+        remove-codeql: 'true'
         build-mount-path: '/var/lib/docker/'
 
     - name: Restart docker
