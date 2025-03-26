@@ -52,7 +52,7 @@ jobs:
           linux/arm64
         push: true
         tags: |
-          xkand/immich_model-cache:latest
-          ghcr.io/tonc/immich_model-cache:latest
-          registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
-          docker.cnb.cool/xkand/docker/immich_model-cache:latest
+          xkand/immich_model-cache:beta
+          ghcr.io/tonc/immich_model-cache:beta
+          registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:beta
+          docker.cnb.cool/xkand/docker/immich_model-cache:beta
