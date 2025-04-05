@@ -13,6 +13,10 @@ RUN apk add --no-cache git git-lfs && \
     # git clone --depth 1 https://huggingface.co/immich-app/buffalo_m /model-cache-original/facial-recognition/buffalo_m && \
     # git clone --depth 1 https://huggingface.co/immich-app/buffalo_s /model-cache-original/facial-recognition/buffalo_s && \
     find /model-cache-original -type d -name ".git" -exec rm -rf {} + && \
+    find /model-cache-original -type d -name "rk3566" -exec rm -rf {} + && \
+    find /model-cache-original -type d -name "rk3568" -exec rm -rf {} + && \
+    find /model-cache-original -type d -name "rk3576" -exec rm -rf {} + && \
+    find /model-cache-original -type d -name "rk3588" -exec rm -rf {} + && \
     du -sh /model-cache-original/*
 
 # 生产阶段
