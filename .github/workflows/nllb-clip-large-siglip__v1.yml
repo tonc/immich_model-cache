@@ -66,6 +66,10 @@ jobs:
         file: ./nllb-clip-large-siglip__v1/Dockerfile
         platforms: |
           linux/amd64
+          linux/arm64
         push: true
         tags: |
+          xkand/nllb-clip-large-siglip__v1:latest
+          ghcr.io/tonc/nllb-clip-large-siglip__v1:latest
+          registry.cn-hangzhou.aliyuncs.com/tonc/nllb-clip-large-siglip__v1:latest
           docker.cnb.cool/xkand/docker/nllb-clip-large-siglip__v1:latest
