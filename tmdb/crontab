@@ -1,0 +1,2 @@
+# 每6小时运行一次脚本
+0 */6 * * * python DnsParse.py >> /tmp/cron.log 2>&1
