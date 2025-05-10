@@ -3,8 +3,7 @@ FROM python:alpine3.20
 
 # 更新软件包、安装 curl、并安装 Python 库
 RUN apk update && \
-    pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
-
+    pip install requests
 # 创建并设置工作目录
 WORKDIR /root
 
