@@ -18,11 +18,11 @@ jobs:
       uses: docker/setup-buildx-action@v2
     
     # 登录到 Docker Hub、GHCR 或阿里云容器镜像
-    - name: 登录到 Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: 登录到 Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
 
     # 登录到 cnb
     - name: 登录到 cnb
@@ -38,9 +38,9 @@ jobs:
         password: ${{ secrets.GH_TOKEN }}
 
     # 登录到阿里云容器镜像
-    - name: 登录到阿里云容器镜像
-      run:
-          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
+    # - name: 登录到阿里云容器镜像
+    #   run:
+    #       docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
 
 
     # 构建并推送多平台 Docker 镜像
@@ -48,13 +48,11 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./immich-geodata-cn/Dockerfile  # 指定 Dockerfile 路径
+        file: immich-geodata-cn/Dockerfile  # 指定 Dockerfile 路径
         platforms: |
           linux/amd64
           linux/arm64
         push: true
         tags: |
-          xkand/immich-geodata-cn:latest
           ghcr.io/tonc/immich-geodata-cn:latest
-          registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
-          docker.cnb.cool/xkand/docker/immich-geodata-cn:latest
+          docker.cnb.cool/xkand/immich/immich-geodata-cn:latest
