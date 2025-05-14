@@ -1,1 +1,2 @@
 whyour/qinglong docker.cnb.cool/xkand/immich/qinglong
+whyour/qinglong:debian docker.cnb.cool/xkand/immich/qinglong:debian
