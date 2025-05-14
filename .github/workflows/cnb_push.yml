@@ -53,55 +53,46 @@
 #           docker buildx rm img_sync || true
 
 
-name: 多平台镜像同步（简单版）
+name: 镜像同步（Skopeo 直接复制）
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 */12 * * *'  # 每12小时自动同步一次
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出代码
+      - name: 检出代码（获取镜像列表）
         uses: actions/checkout@v4
 
-      - name: 设置Docker环境
-        uses: docker/setup-qemu-action@v3
+      - name: 安装 Skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
 
-      - name: 设置Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: 登录镜像仓库
+      - name: 登录目标镜像仓库
         run: |
           docker login docker.cnb.cool -u cnb -p ${{ secrets.cnb }}
 
-      - name: 同步镜像
+      - name: 同步镜像（保持ID一致）
         run: |
           set -eo pipefail
-          
           while IFS= read -r line; do
-            [[ "$line" =~ ^#|^$ ]] && continue
+            [[ "$line" =~ ^#|^$ ]] && continue  # 跳过注释和空行
 
             # 解析输入行（格式：源镜像 目标镜像）
             src_image=$(echo "$line" | awk '{print $1}')
             dest_image=$(echo "$line" | awk '{print $2}')
+
+            echo "🔍 正在同步: $src_image => $dest_image"
             
-            echo "🔍 正在处理: $src_image => $dest_image"
+            # 使用 skopeo 直接复制镜像（包括所有平台）
+            skopeo copy --all \
+              docker://$src_image \
+              docker://$dest_image
 
-            # 拉取镜像
-            echo "⬇️ 拉取源镜像..."
-            docker pull $src_image
-
-            # 标记镜像
-            echo "🏷️ 标记镜像..."
-            docker tag $src_image $dest_image
-
-            # 推送镜像
-            echo "⬆️ 推送目标镜像..."
-            docker push $dest_image
-
-            echo "🎉 同步成功: $dest_image"
+            echo "✅ 同步完成: $dest_image"
             echo "----------------------------------------"
           done < "$GITHUB_WORKSPACE/images.txt"
