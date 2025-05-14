@@ -67,8 +67,10 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: 设置Docker
+      - name: 设置Docker环境
         uses: docker/setup-qemu-action@v3
+
+      - name: 设置Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: 登录镜像仓库
