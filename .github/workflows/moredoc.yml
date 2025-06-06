@@ -1,4 +1,4 @@
-name: 构建 immich_model-cache 并推送 Docker 镜像
+name: 构建 moredoc 并推送 Docker 镜像
 
 on:
   workflow_dispatch: # 手动触发
