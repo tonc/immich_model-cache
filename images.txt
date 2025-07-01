@@ -1,5 +1,0 @@
-ghcr.io/immich-app/immich-server:release docker.cnb.cool/xkand/immich/immich-server:release
-ghcr.io/immich-app/immich-machine-learning:release docker.cnb.cool/xkand/immich/immich-machine-learning:release
-ghcr.io/immich-app/immich-machine-learning:release-openvino docker.cnb.cool/xkand/immich/immich-machine-learning:release-openvino
-ghcr.io/immich-app/immich-machine-learning:release-cuda docker.cnb.cool/xkand/immich/immich-machine-learning:release-cuda
-ghcr.io/immich-app/immich-machine-learning:release-rocm docker.cnb.cool/xkand/immich/immich-machine-learning:release-rocm
