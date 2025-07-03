@@ -66,8 +66,8 @@ jobs:
         file: immich_model-cache/Dockerfile
         platforms: |
           linux/amd64
-          linux/arm64
+          # linux/arm64
         push: true
         tags: |
           ghcr.io/tonc/immich_model-cache:latest
-          docker.cnb.cool/xkand/immich/immich_model-cache:latest
+          docker.cnb.cool/rakin/immich/immich_model-cache:latest
