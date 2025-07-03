@@ -2,8 +2,8 @@ name: 构建 nllb-clip-large-siglip__v1 并推送 Docker 镜像
 
 on:
   workflow_dispatch: # 手动触发
-  schedule:
-    - cron: "33 5 * * 5"
+  # schedule:
+  #   - cron: "33 5 * * 5"
 
 jobs:
   build:
