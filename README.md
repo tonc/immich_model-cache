@@ -20,8 +20,7 @@ immich_model-cache 方便小伙伴们拉取中文大模型
 - model-cache 映射路径需要和 immich_machine_learning 容器内的路径一致
 
 镜像地址可换成以下：
-- xkand/immich_model-cache:latest
-- registry.cn-hangzhou.aliyuncs.com/tonc/immich_model-cache:latest
+- docker.cnb.cool/rakin/immich/immich_model-cache:latest
 
 
 
@@ -48,11 +47,10 @@ immich_model-cache 方便小伙伴们拉取中文大模型
 ```
 
 镜像地址可换成以下：
-- xkand/immich-geodata-cn:latest
-- registry.cn-hangzhou.aliyuncs.com/tonc/immich-geodata-cn:latest
+- docker.cnb.cool/rakin/immich/immich-geodata-cn:latest
 
 
 注意:
-- 镜像支持 x86 arm64 架构
+- 镜像支持 x86 架构
 
 纯小白,代码由AI生成,不保证代码质量,请自行测试

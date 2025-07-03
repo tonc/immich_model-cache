@@ -51,8 +51,7 @@ jobs:
         file: immich-geodata-cn/Dockerfile  # 指定 Dockerfile 路径
         platforms: |
           linux/amd64
-          linux/arm64
         push: true
         tags: |
           ghcr.io/tonc/immich-geodata-cn:latest
-          docker.cnb.cool/xkand/immich/immich-geodata-cn:latest
+          docker.cnb.cool/rakin/immich/immich-geodata-cn:latest
