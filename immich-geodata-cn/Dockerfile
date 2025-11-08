@@ -35,8 +35,9 @@ COPY --from=builder /app_container_data /app_container_data
 
 # 启动逻辑
 CMD ["sh", "-c", \
+    "cp -r /app_container_data/* /app/ && \
     # 如果 /app 目录为空，则将 /app_container_data 中的内容复制到 /app
-    "if [ -z \"$(ls -A /app)\" ]; then cp -r /app_container_data/* /app/; fi && \
+    # "if [ -z \"$(ls -A /app)\" ]; then cp -r /app_container_data/* /app/; fi && \
     # 生成当前日期并写入 geodata-date.txt 文件
     echo \"$(date -u +\"%Y-%m-%dT%H:%M:%S+00:00\")\" > /app/geodata/geodata-date.txt && \
     # 保持容器运行
